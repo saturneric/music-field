@@ -7,24 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9227913421D266F2009DB236 /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9227913321D266F2009DB236 /* wav.cpp */; };
 		92B75C4021C24AB600DA2DF9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B75C3F21C24AB600DA2DF9 /* main.cpp */; };
+		92B75C4821C2513C00DA2DF9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C4721C2513C00DA2DF9 /* GLUT.framework */; };
+		92B75C4A21C2514200DA2DF9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C4921C2514200DA2DF9 /* OpenGL.framework */; };
+		92B75C4D21C2602000DA2DF9 /* graphs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B75C4C21C2602000DA2DF9 /* graphs.cpp */; };
+		92B75C5021C2B69100DA2DF9 /* fields.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B75C4E21C2B69100DA2DF9 /* fields.cpp */; };
+		92B75C5221C2CCC700DA2DF9 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C5121C2CCC700DA2DF9 /* libfreetype.6.dylib */; };
+		92B75C5921C2D21E00DA2DF9 /* libglm_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C5821C2D21E00DA2DF9 /* libglm_static.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		92B75C3A21C24AB600DA2DF9 /* CopyFiles */ = {
+		92B75C3A21C24AB600DA2DF9 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9227913221D266DE009DB236 /* wav.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wav.hpp; sourceTree = "<group>"; };
+		9227913321D266F2009DB236 /* wav.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wav.cpp; sourceTree = "<group>"; };
+		9227913521D269C1009DB236 /* type.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = type.hpp; sourceTree = "<group>"; };
 		92B75C3C21C24AB600DA2DF9 /* Fields */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Fields; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B75C3F21C24AB600DA2DF9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		92B75C4721C2513C00DA2DF9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		92B75C4921C2514200DA2DF9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		92B75C4B21C2602000DA2DF9 /* graphs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphs.hpp; sourceTree = "<group>"; };
+		92B75C4C21C2602000DA2DF9 /* graphs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphs.cpp; sourceTree = "<group>"; };
+		92B75C4E21C2B69100DA2DF9 /* fields.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fields.cpp; sourceTree = "<group>"; };
+		92B75C4F21C2B69100DA2DF9 /* fields.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fields.hpp; sourceTree = "<group>"; };
+		92B75C5121C2CCC700DA2DF9 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../usr/local/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		92B75C5621C2D1E500DA2DF9 /* libglm_shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglm_shared.dylib; path = ../../../../../usr/local/include/glm/libglm_shared.dylib; sourceTree = "<group>"; };
+		92B75C5821C2D21E00DA2DF9 /* libglm_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglm_static.a; path = ../../../../../usr/local/include/glm/libglm_static.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +52,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B75C5221C2CCC700DA2DF9 /* libfreetype.6.dylib in Frameworks */,
+				92B75C4A21C2514200DA2DF9 /* OpenGL.framework in Frameworks */,
+				92B75C5921C2D21E00DA2DF9 /* libglm_static.a in Frameworks */,
+				92B75C4821C2513C00DA2DF9 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9227913021D2660B009DB236 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				92B75C3F21C24AB600DA2DF9 /* main.cpp */,
+			);
+			path = unix;
+			sourceTree = "<group>";
+		};
+		9227913121D26676009DB236 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				92B75C4F21C2B69100DA2DF9 /* fields.hpp */,
+				92B75C4B21C2602000DA2DF9 /* graphs.hpp */,
+				9227913221D266DE009DB236 /* wav.hpp */,
+				9227913521D269C1009DB236 /* type.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		92B75C3321C24AB600DA2DF9 = {
 			isa = PBXGroup;
 			children = (
-				92B75C3E21C24AB600DA2DF9 /* Fields */,
+				9227913121D26676009DB236 /* include */,
+				9227913021D2660B009DB236 /* unix */,
+				92B75C3E21C24AB600DA2DF9 /* src */,
 				92B75C3D21C24AB600DA2DF9 /* Products */,
+				92B75C4621C2513C00DA2DF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +100,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		92B75C3E21C24AB600DA2DF9 /* Fields */ = {
+		92B75C3E21C24AB600DA2DF9 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				92B75C3F21C24AB600DA2DF9 /* main.cpp */,
+				9227913321D266F2009DB236 /* wav.cpp */,
+				92B75C4E21C2B69100DA2DF9 /* fields.cpp */,
+				92B75C4C21C2602000DA2DF9 /* graphs.cpp */,
 			);
-			path = Fields;
+			path = src;
+			sourceTree = "<group>";
+		};
+		92B75C4621C2513C00DA2DF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92B75C5821C2D21E00DA2DF9 /* libglm_static.a */,
+				92B75C5621C2D1E500DA2DF9 /* libglm_shared.dylib */,
+				92B75C5121C2CCC700DA2DF9 /* libfreetype.6.dylib */,
+				92B75C4921C2514200DA2DF9 /* OpenGL.framework */,
+				92B75C4721C2513C00DA2DF9 /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,7 +131,7 @@
 			buildPhases = (
 				92B75C3821C24AB600DA2DF9 /* Sources */,
 				92B75C3921C24AB600DA2DF9 /* Frameworks */,
-				92B75C3A21C24AB600DA2DF9 /* CopyFiles */,
+				92B75C3A21C24AB600DA2DF9 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -118,7 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B75C4D21C2602000DA2DF9 /* graphs.cpp in Sources */,
 				92B75C4021C24AB600DA2DF9 /* main.cpp in Sources */,
+				9227913421D266F2009DB236 /* wav.cpp in Sources */,
+				92B75C5021C2B69100DA2DF9 /* fields.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +303,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/freetype2/**",
+					"/usr/local/include/glm/**",
+					"/usr/local/Cellar/glew/2.1.0/**",
+					"/usr/local/Cellar/glfw/3.2.1/**",
+					"\"$(SRCROOT)/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/include/glm,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-deprecated-declarations",
+					"-v",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -248,6 +327,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/freetype2/**",
+					"/usr/local/include/glm/**",
+					"/usr/local/Cellar/glew/2.1.0/**",
+					"/usr/local/Cellar/glfw/3.2.1/**",
+					"\"$(SRCROOT)/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/include/glm,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-deprecated-declarations",
+					"-v",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
