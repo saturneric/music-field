@@ -12,8 +12,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 #endif
-
-
 #include <vector>
 #include <list>
 #include <map>
