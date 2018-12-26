@@ -108,7 +108,6 @@ public:
 };
 
 class Window {
-    
 public:
     static list<Shape *> shapes;
     static map<string,View2D *> menus;
