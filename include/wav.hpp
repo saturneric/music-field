@@ -261,8 +261,10 @@ public:
     struct process m_pss;
     WAV(string path):active(false),if_fmt(false){
         fp = fopen(path.data(), "rb");
-        if(fp == NULL) throw -1;
-        
+        if(fp == NULL){
+            printf("Can't open target file.\n");
+            throw -1;
+        }
         do{
             fread(&this->info, 1, sizeof(struct CHUNK_INFO), fp);
             char *p_id = (char *)(&info.ChunkID);

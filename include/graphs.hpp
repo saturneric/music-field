@@ -103,7 +103,7 @@ public:
 class Bar:public View2D {
 public:
     Bar(Point, GLint width){
-        Shape *p_shape = new Shape();
+        //Shape *p_shape = new Shape();
     }
 };
 
