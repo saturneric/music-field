@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9227913421D266F2009DB236 /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9227913321D266F2009DB236 /* wav.cpp */; };
+		9227913721D355F8009DB236 /* hsv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9227913621D355F8009DB236 /* hsv.cpp */; };
 		92B75C4021C24AB600DA2DF9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B75C3F21C24AB600DA2DF9 /* main.cpp */; };
 		92B75C4821C2513C00DA2DF9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C4721C2513C00DA2DF9 /* GLUT.framework */; };
 		92B75C4A21C2514200DA2DF9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B75C4921C2514200DA2DF9 /* OpenGL.framework */; };
@@ -34,6 +35,8 @@
 		9227913221D266DE009DB236 /* wav.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wav.hpp; sourceTree = "<group>"; };
 		9227913321D266F2009DB236 /* wav.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wav.cpp; sourceTree = "<group>"; };
 		9227913521D269C1009DB236 /* type.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = type.hpp; sourceTree = "<group>"; };
+		9227913621D355F8009DB236 /* hsv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hsv.cpp; sourceTree = "<group>"; };
+		9227913821D3567F009DB236 /* hsv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hsv.hpp; sourceTree = "<group>"; };
 		92B75C3C21C24AB600DA2DF9 /* Fields */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Fields; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B75C3F21C24AB600DA2DF9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		92B75C4721C2513C00DA2DF9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -77,6 +80,7 @@
 				92B75C4B21C2602000DA2DF9 /* graphs.hpp */,
 				9227913221D266DE009DB236 /* wav.hpp */,
 				9227913521D269C1009DB236 /* type.hpp */,
+				9227913821D3567F009DB236 /* hsv.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9227913321D266F2009DB236 /* wav.cpp */,
+				9227913621D355F8009DB236 /* hsv.cpp */,
 				92B75C4E21C2B69100DA2DF9 /* fields.cpp */,
 				92B75C4C21C2602000DA2DF9 /* graphs.cpp */,
 			);
@@ -179,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B75C4D21C2602000DA2DF9 /* graphs.cpp in Sources */,
+				9227913721D355F8009DB236 /* hsv.cpp in Sources */,
 				92B75C4021C24AB600DA2DF9 /* main.cpp in Sources */,
 				9227913421D266F2009DB236 /* wav.cpp in Sources */,
 				92B75C5021C2B69100DA2DF9 /* fields.cpp in Sources */,
