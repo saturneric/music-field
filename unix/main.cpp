@@ -8,7 +8,7 @@ list<Shape *> Window::shapes = {};
 map<string,View2D *> Window::menus = {};
 vector<Field*> fields;
 Window *p_nwd = NULL;
-WAV twav("test.wav");
+WAV twav("data/test.wav");
 Shape *p_avg = new Shape();
 
 int main(int argc, char * argv[]) {
