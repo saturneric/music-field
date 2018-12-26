@@ -3,6 +3,7 @@
 
 #include <type.hpp>
 #include <graphs.hpp>
+#include <hsv.hpp>
 
 using std::string;
 using std::vector;
@@ -153,14 +154,27 @@ public:
                     if(i != bit32.begin()){
                         Color m_color;
                         
-                        //printf("%d %d\n",bit.da,bit.db);
                         double cb = log2(sqrt(bit.da + bit.db)+1)*18.5, cg = log2(sqrt(abs(bit.db - (*(i-1)).db))+1)*42, cr = log2(sqrt(abs(bit.da - (*(i-1)).da))+1)*42;
+                        rgb crgb;
+                        hsv chsv;
+                        crgb.r = 1.0*cr/255;
+                        crgb.g = 1.0*cg/255;
+                        crgb.b = 1.0*cb/255;
+                        chsv = rgb2hsv(crgb);
+                        //addsaturation(chsv);
+                        chsv.s += 0.5;
+                        chsv.s > 1 ? 1 : 1;
+                        crgb = hsv2rgb(chsv);
+                        cr = 255 * crgb.r;
+                        cg = 255 * crgb.g;
+                        cb = 255 * crgb.b;
                         cr = cr>255?255:cr;
                         cg = cg>255?255:cg;
                         cb = cb>255?255:cb;
                         sumr += cr;
                         sumb += cb;
                         sumg += cg;
+                        
                         m_color.setColor({cr,cb,cg});
                         color_data.push_back(m_color);
                     }
