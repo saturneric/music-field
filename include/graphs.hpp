@@ -16,6 +16,8 @@ unsigned long fresh_screen(int signal);
 //计算函数声明
 void draw_fields(int signal);
 
+int create_fields(int hw);
+
 /************************************************
  颜色的抽象
  ***/
