@@ -1,78 +1,150 @@
 #ifndef wav_hpp
 #define wav_hpp
-
+/*********************************************************************
+ *
+ *相关头文件与命名空间的包含或引用
+ *
+ *********************************************************************/
 #include <type.hpp>
 #include <graphs.hpp>
 #include <hsv.hpp>
 
+//需要用到的容器类
 using std::string;
 using std::vector;
 
-FILE * readWAVInfo(void);
-int init_test_wav(int);
+/*********************************************************************
+ *
+ *函数声明
+ *
+ *********************************************************************/
 
+//读取WAV文件的相关信息，现已废弃
+extern FILE * readWAVInfo(void);
+//根据该工程的特点，初始化WAV方法类
+extern int init_test_wav(int);
+
+/*********************************************************************
+ *
+ *数据储结构体声明
+ *
+ *********************************************************************/
+
+/**
+ 储存WAV头12个字节的信息
+ */
 struct WAV_Format{
-    uint32_t ChunkID;    /* "RIFF" */
-    uint32_t ChunkSize;    /* 36 + Subchunk2Size */
-    uint32_t Format; /* "WAVE" */
+//    “RIFF”
+    uint32_t ChunkID;
+//    文件大小相关
+    uint32_t ChunkSize;
+//    “WAVE”
+    uint32_t Format;
 };
 
+
+/**
+ 储存fmt数据块信息体
+ */
 struct WAV_FMT {
-    /* "fmt " */
-    //uint32_t Subchunk1ID;
-    /* 16 for PCM */
-    //uint32_t Subchunk1Size;
-    uint16_t AudioFormat;    /* PCM = 1*/
-    uint16_t NumChannels;    /* Mono = 1, Stereo = 2, etc. */
-    uint32_t SampleRate;    /* 8000, 44100, etc. */
-    uint32_t ByteRate;    /* = SampleRate * NumChannels * BitsPerSample/8 */
-    uint16_t BlockAlign;    /* = NumChannels * BitsPerSample/8 */
-    uint16_t BitsPerSample;    /* 8bits, 16bits, etc. */
+//    PCM = 1
+    uint16_t AudioFormat;
+//    Mono = 1, Stereo = 2, etc.
+    uint16_t NumChannels;
+//    8000, 44100, etc.
+    uint32_t SampleRate;
+//    = SampleRate * NumChannels * BitsPerSample/8
+    uint32_t ByteRate;
+//    = NumChannels * BitsPerSample/8
+    uint16_t BlockAlign;
+//    8bits, 16bits, etc.
+    uint16_t BitsPerSample;
 };
 
+
+/**
+ 储存一个CHUNK（数据块）
+ */
 struct WAV_CHUNK {
     uint32_t SubchunkExID;
     uint32_t SubchunkExSize;
     uint32_t NumChannels;
 };
 
+/**
+ 储存一个CHUNK的说明信息
+ */
 struct CHUNK_INFO{
     uint32_t ChunkID;
     uint32_t ChunkSize;
 };
 
+/**
+ 储存data数据块的说明信息
+ */
 struct WAV_DATA{
     /* sub-chunk "data" */
     uint32_t Subchunk2ID;    /* "data" */
     uint32_t Subchunk2Size;    /* data size */
 };
 
+
+/**
+ 储存数据包取用进度和步长
+ */
 struct process{
     uint32_t start,now,end,step;
 };
 
+/*********************************************************************
+ *
+ *数据储存位域声明
+ *
+ *********************************************************************/
+
+/**
+ 储存16位双声道二进制音频数据，分为da，db两个域。分别是左声道，右声道的数据
+ */
 struct Bit32
 {
     unsigned short da:16;
     unsigned short db:16;
 };
 
+/**
+ 储存16位单声道的二进制音频数据
+ */
 struct BitO16
 {
     unsigned short da:16;
 };
 
+/**
+ 储存8位双声道二进制音频数据，分为da，db两个域。分别是左声道，右声道的数据
+ */
 struct Bit16
 {
     unsigned short da:8;
     unsigned short db:8;
 };
 
+/**
+ 储存8位单声道的二进制音频数据
+ */
 struct BitO8
 {
     unsigned short da:8;
 };
 
+/*********************************************************************
+ *
+ *数据操作类声明
+ *
+ *********************************************************************/
+
+/************************************************
+ 32位数据包的抽象，已废弃不用。
+ ***/
 class Data32{
 public:
     bool active;
@@ -92,22 +164,45 @@ public:
     
 };
 
+/************************************************
+ 数据包的抽象
+ ***/
 class Data{
 public:
+//    数据包是否可用
     bool active;
+//    声道信息，每次采样的数据大小信息
     uint32_t channels, bit_size;
+//    16位双声道容器
     vector<struct Bit32> bit32;
+//    16位单声道容器
     vector<struct BitO16> bito16;
+//    8位双声道容器
     vector<struct Bit16> bit16;
+//    8位单声道容器
     vector<struct BitO8> bito8;
+//    计算后的颜色数据储存容器
     vector<Color> color_data;
+//    根据数据包内部颜色信息所计算出的平均颜色
     Color avg_color;
+    
+    /**
+     构造函数，一般由WAV类在创建数据包时传值
+
+     @param tchannels 声道
+     @param tbit_size 每次采样的数据大小
+     @param start 指向这段数据在数据容器中数据容器开始部分的指针
+     @param end 指向这段数据在数据容器中数据容器结束部分的指针
+     */
     Data(uint32_t tchannels, uint32_t tbit_size,void *start, void *end):active(true),channels(tchannels),bit_size(tbit_size){
+//        当每次采样的数据大小为32bit时
         if (bit_size == 32){
             uint32_t *m_s = (uint32_t *)start, *m_e = (uint32_t *)end;
             for(auto i = m_s;i != m_e; i++){
                 struct Bit32 temp;
+//                内存拷贝，解决强制类型转化无法完成的问题
                 memcpy(&temp, i, sizeof(struct Bit32));
+//                选用适当的容器储存
                 bit32.push_back(temp);
             }
         }
@@ -136,6 +231,7 @@ public:
             }
         }
     }
+    
     Data(const Data &tmp){
         bit_size = tmp.bit_size;
         channels = tmp.channels;
@@ -145,6 +241,10 @@ public:
         bit16 = tmp.bit16;
         bito8 = tmp.bito8;
     }
+    
+    /**
+     将储存的声音数据计算转化成颜色数据
+     */
     void Data2Color(void){
         if(channels == 2){
             if(bit_size == 32){
@@ -244,22 +344,33 @@ public:
     }
 };
 
+/************************************************
+ WAV文件的抽象
+ ***/
 class WAV{
 public:
+//文件头信息储存相关变量
     struct WAV_Format format;
     struct WAV_FMT fmt;
     struct WAV_DATA data;
     struct WAV_CHUNK fact;
     struct WAV_CHUNK list;
     struct CHUNK_INFO info;
+//    计算出的文件大小储存
     uint32_t file_size;
+//    判断文件是否合法的相关变量
     bool active,if_fmt;
+//    文件指针，指向所读取的文件的操作结构
     FILE *fp;
+//    文件原始音频数据储存的相关容器
     vector<uint32_t> data32;
     vector<uint16_t> data16;
     vector<uint8_t> data8;
+//    文件音频持续时间
     uint32_t seconds;
+//    数据包取用状态记录变量
     struct process m_pss;
+    
     WAV(string path):active(false),if_fmt(false){
         fp = fopen(path.data(), "rb");
         if(fp == NULL){
@@ -272,11 +383,13 @@ public:
             
             uint32_t temp;
             char *p_tmp = (char *)(&temp);
+//            判断本次所读入的数据是否为RIFF
             if(*p_id=='R' && *(p_id+1)=='I' && *(p_id+2)=='F' && *(p_id+3)=='F'){
                 format.ChunkID = info.ChunkID;
                 format.ChunkSize = info.ChunkSize;
                 file_size = info.ChunkSize+8;
                 fread(&temp, 1, sizeof(uint32_t), fp);
+//                判断本次所读入的数据是否为WAVE
                 if(*p_tmp=='W' && *(p_tmp+1)=='A' && *(p_tmp+2)=='V' && *(p_tmp+3)=='E'){
                     active = true;
                     format.Format = temp;
@@ -308,20 +421,7 @@ public:
             }
             
         }while(!feof(fp) && active == true);
-        /*fread (&this->format, 1, sizeof(struct WAV_Format), fp);
-        fread (&this->fmt, 1, sizeof(struct WAV_FMT), fp);
-        char if_fact[5];
-        do{
-            fread (&if_fact, 1, sizeof(uint32_t), fp);
-            if_fact[4] = '\0';
-            if(!strcmp(if_fact, "fact"))
-                fread(&this->fact, 1, sizeof(struct WAV_CHUNK), fp);
-            else if (!strcmp(if_fact, "LIST"))
-                fread(&this->list, 1, sizeof(struct WAV_CHUNK), fp);
-            fseek(fp, -sizeof(uint32_t), SEEK_CUR);
-            
-        }while(strcmp(if_fact, "data"));
-        fread(&this->data, 1, sizeof(struct WAV_DATA), fp);*/
+//        读入WAV文件中储存的音频数据
         if(fmt.BlockAlign == 4){
             uint32_t t_data32, count = data.Subchunk2Size/sizeof(uint32_t);
             while(fread(&t_data32, 1, sizeof(uint32_t), fp) && ~count){
@@ -347,6 +447,12 @@ public:
         }
         seconds = data.Subchunk2Size/fmt.ByteRate;
     }
+    
+    /**
+     设置数据包所存音频数据的长度
+
+     @param ms 以ms（毫秒）为单位
+     */
     void setTimer(int ms){
         if(ms <= 1000){
             m_pss.step = (((double)ms/seconds)*((data.Subchunk2Size/1000.0)/(double)fmt.BlockAlign));
@@ -356,6 +462,9 @@ public:
         }
     }
     
+    /**
+     获得一个32bits大的数据包，现在已经废弃
+     */
     Data32 getData32(void){
         if(m_pss.now < m_pss.end && m_pss.now + m_pss.step < m_pss.end){
             Data32 m_data(&(data32[m_pss.now]),
@@ -370,6 +479,10 @@ public:
         }
     }
     
+    
+    /**
+     获得一个数据包
+     */
     Data getData(void){
         if(m_pss.now < m_pss.end && m_pss.now + m_pss.step < m_pss.end){
             if(fmt.NumChannels == 2){
@@ -406,6 +519,9 @@ public:
         return m_data;
     }
     
+    /**
+     打印WAV文件的相关主要信息
+     */
     void getInfo(void){
         printf("ChunkID \t%x\n", format.ChunkID);
         printf("ChunkSize \t%d\n", format.ChunkSize);
@@ -420,7 +536,4 @@ public:
         printf("Subchunk2Size \t%d\n", data.Subchunk2Size);
     }
 };
-
-
-
 #endif /* wav_hpp */
