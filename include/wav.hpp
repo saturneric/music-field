@@ -9,6 +9,7 @@ using std::string;
 using std::vector;
 
 FILE * readWAVInfo(void);
+int init_test_wav(int);
 
 struct WAV_Format{
     uint32_t ChunkID;    /* "RIFF" */
