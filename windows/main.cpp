@@ -22,7 +22,7 @@ int main(int argc, char * argv[]) {
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(700, 700);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	int hw = init_test_wav(60);
+	int hw = init_test_wav(120);
 	create_fields(hw);
 	nwd.create("Fields");
 	nwd.show();
