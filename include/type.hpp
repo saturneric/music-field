@@ -16,4 +16,14 @@
 #include <list>
 #include <map>
 
+//计算函数执行时间间隔
+#define DRAW_TIMER 1
+//绘图函数执行时间间隔
+#define FRESH_TIMER 20
+
+typedef std::pair<double, double> Size;
+typedef std::pair<double, double> Point;
+typedef std::vector<double> Point3;
+typedef std::vector<double> RawColor;
+
 #endif /* type_h */

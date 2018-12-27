@@ -18,11 +18,13 @@ int main(int argc, char * argv[]) {
     nwd.playMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     nwd.size({700,700});
     nwd.position({200,100});
+    
     twav.getInfo();
     twav.setTimer(20);
     
     int hw = sqrt(twav.m_pss.step);
     nwd.create("Fields");
+    
     p_avg->setRetangle({{0.98,-0.98},{0.85,-0.85}});
     nwd.draw_shape(p_avg);
     for(int y = 0; y < hw; y++){
