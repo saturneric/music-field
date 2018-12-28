@@ -66,7 +66,7 @@ int main() {
 	std::cout << R << " " << G << " " << B;
 	std::cout << "\n"<< R << " " << G << " " << B;
 }
-double  Get_RGB::hztospectrun(double hz) {
+double  Get_RGB::hztospectrum(double hz) {
 	double hbox;
 	hbox = hz;
 	for (;hbox > 800;hbox = hbox / 2);
